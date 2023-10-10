@@ -1,0 +1,33 @@
+services:
+
+    caddy:
+        # see https://hub.docker.com/_/caddy
+        image: caddy:alpine
+        container_name: caddy
+        init: true
+        ports:
+            - "80:80"
+            - "443:443"
+            - "443:443/udp"
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile
+            - caddy_data:/data
+        depends_on:
+            - app
+        restart: unless-stopped
+        environment:
+            - DOMAIN
+
+    app:
+        image: anovium
+        container_name: anovium
+        build: .
+        init: true
+        ports:
+            - "5000:5000"
+        restart: unless-stopped
+        environment:
+            ENV: ${ENV:-production}
+
+volumes:
+    caddy_data:

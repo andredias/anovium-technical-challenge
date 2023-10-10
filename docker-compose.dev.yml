@@ -1,0 +1,14 @@
+services:
+    app:
+        command:
+            [
+                "hypercorn",
+                "--config=hypercorn.toml",
+                "--reload",
+                "--root-path=/api",
+                "anovium.main:app"
+            ]
+        volumes:
+            - ./anovium/:/app/anovium/
+        environment:
+            - ENV=development
