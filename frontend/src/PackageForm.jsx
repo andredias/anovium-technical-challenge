@@ -19,11 +19,11 @@ function PackageForm() {
         try {
             const response = await axios.post('/packages', formData)
             setMessage('Package created successfully')
-            clearMessageAfterDelay(3000) // Display message for 3 seconds
+            clearMessageAfterDelay(5000)
             console.log(response.data)
         } catch (error) {
-            setMessage('Error creating the package')
-            clearMessageAfterDelay(3000) // Display message for 3 seconds
+            setMessage('Error creating the package: ' + error.message)
+            clearMessageAfterDelay(5000)
             console.error(error)
         }
     }
