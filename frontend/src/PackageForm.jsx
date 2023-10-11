@@ -39,7 +39,16 @@ function PackageForm() {
             {message && <div className="message">{message}</div>}
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Return Address:</label>
+                    <label>Package ID</label>
+                    <input
+                        type="text"
+                        name="id"
+                        value={formData.id}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Return Address</label>
                     <input
                         type="text"
                         name="return_address"
@@ -48,20 +57,11 @@ function PackageForm() {
                     />
                 </div>
                 <div>
-                    <label>Destination Address:</label>
+                    <label>Destination Address</label>
                     <input
                         type="text"
                         name="destination_address"
                         value={formData.destination_address}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Package ID:</label>
-                    <input
-                        type="text"
-                        name="id"
-                        value={formData.id}
                         onChange={handleChange}
                     />
                 </div>

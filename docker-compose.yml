@@ -10,6 +10,7 @@ services:
             - "443:443"
             - "443:443/udp"
         volumes:
+            - ./frontend/dist:/dist
             - ./Caddyfile:/etc/caddy/Caddyfile
             - caddy_data:/data
         depends_on:
@@ -21,7 +22,7 @@ services:
     app:
         image: anovium
         container_name: anovium
-        build: .
+        build: backend
         init: true
         ports:
             - "5000:5000"

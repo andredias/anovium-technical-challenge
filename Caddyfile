@@ -3,6 +3,12 @@
         reverse_proxy h2c://app:5000
     }
     handle {
-        redir https://{host}/api/docs
+        root * /dist
+        try_files {path} /index.html
+        file_server
     }
+    @compress_exts {
+        not path *.gif *.jpg *.png
+    }
+    encode @compress_exts gzip zstd
 }
